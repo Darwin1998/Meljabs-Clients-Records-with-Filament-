@@ -14,7 +14,7 @@ class LatestPayments extends BaseWidget
 
     protected int | string | array $columnSpan = 'full';
 
-    protected static ?int $sort = 1;
+    protected static ?int $sort = 3;
 
     protected function getTableQuery(): Builder
     {
@@ -25,7 +25,7 @@ class LatestPayments extends BaseWidget
     {
         return [
             TextColumn::make('client.full_name')->label('Name'),
-            TextColumn::make('amount'),
+            TextColumn::make('amount')->formatStateUsing(fn (string $state): string => __("₱".$state)),
             TextColumn::make('date')->date('F j, Y'),
         ];
     }

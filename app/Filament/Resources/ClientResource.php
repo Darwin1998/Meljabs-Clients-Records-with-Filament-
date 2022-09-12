@@ -51,7 +51,7 @@ class ClientResource extends Resource
                     TextInput::make('first_name')->required(),
                     TextInput::make('last_name')->required(),
                     Select::make('barangay_id')
-                        ->relationship('barangay', 'name'),
+                        ->relationship('barangay', 'name')->required(),
 
                     DatePicker::make('installation_date')->required(),
                     TextInput::make('amount')->required()->numeric(true)->label('Installation Fee'),

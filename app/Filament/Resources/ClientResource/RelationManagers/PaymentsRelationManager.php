@@ -40,12 +40,23 @@ class PaymentsRelationManager extends RelationManager
     {
         return $table
             ->columns([
-                TextColumn::make('client.full_name'),
-                TextColumn::make('amount')->formatStateUsing(fn (string $state): string => __("₱".$state)),
-                TextColumn::make('date')->date('F j, Y'),
-                TextColumn::make('status'),
-                TextColumn::make('created_at')->dateTime('F j, Y  g:i:s A')->label('Created at')->sortable(),
-                TextColumn::make('received_by'),
+                TextColumn::make('client.full_name')
+                    ->formatStateUsing(fn (string $state): string => __(ucfirst($state))),
+
+                TextColumn::make('amount')
+                    ->formatStateUsing(fn (string $state): string => __("₱".$state)),
+
+                TextColumn::make('date')
+                    ->date('F j, Y'),
+
+                TextColumn::make('status')
+                    ->formatStateUsing(fn (string $state): string => __(ucfirst($state))),
+
+                TextColumn::make('created_at')
+                    ->dateTime('F j, Y  g:i:s A')->label('Created at')->sortable(),
+
+                TextColumn::make('received_by')
+                    ->formatStateUsing(fn (string $state): string => __(ucfirst($state))),
             ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
