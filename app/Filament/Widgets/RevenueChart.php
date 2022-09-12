@@ -11,7 +11,7 @@ class RevenueChart extends LineChartWidget
     protected static ?string $heading = 'Revenue Chart';
 
     protected int | string | array $columnSpan = 'full';
-
+    protected static ?int $navigationSort = 0;
     protected function getData(): array
     {
         $data = Trend::model(Payment::class)

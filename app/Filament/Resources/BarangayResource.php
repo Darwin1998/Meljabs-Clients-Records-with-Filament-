@@ -13,6 +13,7 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class BarangayResource extends Resource
@@ -23,6 +24,11 @@ class BarangayResource extends Resource
 
 
     protected static ?string $navigationIcon = 'heroicon-o-map';
+
+    protected static function getNavigationBadge(): ?string
+    {
+        return self::getModel()::count();
+    }
 
     public static function form(Form $form): Form
     {
@@ -63,5 +69,10 @@ class BarangayResource extends Resource
             'create' => Pages\CreateBarangay::route('/create'),
             'edit' => Pages\EditBarangay::route('/{record}/edit'),
         ];
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return false;
     }
 }
