@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ClientResource\Pages;
 use App\Filament\Resources\ClientResource\RelationManagers\PaymentsRelationManager;
+use App\Models\Barangay;
 use App\Models\Client;
 use App\Models\Payment;
 use Filament\Forms;
@@ -27,6 +28,8 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Filters\SelectFilter;
 use Illuminate\Database\Eloquent\Model;
+use Filament\Tables\Columns\SelectColumn;
+
 class ClientResource extends Resource
 {
     protected static ?string $model = Client::class;
@@ -55,7 +58,13 @@ class ClientResource extends Resource
 
                     DatePicker::make('installation_date')->required(),
                     TextInput::make('amount')->required()->numeric(true)->label('Installation Fee'),
-                    TextInput::make('payment_method')->required(),
+                    Select::make('payment_method')
+                            ->options([
+                                'gcash' => 'G-Cash',
+                                'cash' => 'Cash',
+                            ])
+                            ->default('cash')
+                            ->disablePlaceholderSelection()
 
                 ])->columns(2),
 

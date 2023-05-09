@@ -16,6 +16,7 @@ class Client extends Model
                             'installation_date',
                             'amount',
                             'barangay_id',
+                            'contact_number'
                         ];
 
     public function payments()
