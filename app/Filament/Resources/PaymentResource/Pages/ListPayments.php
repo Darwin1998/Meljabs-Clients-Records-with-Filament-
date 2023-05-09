@@ -5,9 +5,10 @@ namespace App\Filament\Resources\PaymentResource\Pages;
 use App\Filament\Resources\PaymentResource;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
-use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\Pagination\Paginator;
+use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
+
 class ListPayments extends ListRecords
 {
     protected static string $resource = PaymentResource::class;
@@ -28,6 +29,4 @@ class ListPayments extends ListRecords
     {
         return $query->fastPaginate($this->getTableRecordsPerPage());
     }
-
-
 }

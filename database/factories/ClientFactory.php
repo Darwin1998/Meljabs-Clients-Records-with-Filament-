@@ -21,7 +21,7 @@ class ClientFactory extends Factory
             'last_name' => fake()->lastName(),
             'address' => fake()->streetAddress(),
             'payment_method' => fake()->company(),
-            'amount' => fake()->numberBetween(1,3000),
+            'amount' => fake()->numberBetween(1, 3000),
             'installation_date' => fake()->date(),
         ];
     }

@@ -10,9 +10,9 @@ class Barangay extends Model
     use HasFactory;
 
     protected $fillable = ['name',
-                           'client_id'
+        'client_id',
 
-                        ];
+    ];
 
     public function clients()
     {

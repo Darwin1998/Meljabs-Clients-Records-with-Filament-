@@ -15,12 +15,12 @@ class StatsOverview extends BaseWidget
     protected function getCards(): array
     {
         return [
-            Card::make('Total Clients ', Client::getModel()::count() ),
-            Card::make('Total Barangays ', Barangay::getModel()::count() ),
-            Card::make('Total income from installation ','₱'.Client::sum('amount')),
+            Card::make('Total Clients ', Client::getModel()::count()),
+            Card::make('Total Barangays ', Barangay::getModel()::count()),
+            Card::make('Total income from installation ', '₱' . Client::sum('amount')),
 
-            Card::make('Total Income this month', '₱'.Payment::where('created_at', '>', now()->subDays(30))->sum('amount')),
-            Card::make('Over all income from clients payments', '₱'.Payment::sum('amount')),
+            Card::make('Total Income this month', '₱' . Payment::where('created_at', '>', now()->subDays(30))->sum('amount')),
+            Card::make('Over all income from clients payments', '₱' . Payment::sum('amount')),
         ];
     }
 }

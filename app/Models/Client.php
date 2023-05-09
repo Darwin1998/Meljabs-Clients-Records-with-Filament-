@@ -10,14 +10,14 @@ class Client extends Model
     use HasFactory;
 
     protected $fillable = ['first_name',
-                            'last_name',
-                            'address' ,
-                            'payment_method',
-                            'installation_date',
-                            'amount',
-                            'barangay_id',
-                            'contact_number'
-                        ];
+        'last_name',
+        'address',
+        'payment_method',
+        'installation_date',
+        'amount',
+        'barangay_id',
+        'contact_number',
+    ];
 
     public function payments()
     {
@@ -33,5 +33,4 @@ class Client extends Model
     {
         return "{$this->first_name} {$this->last_name}";
     }
-
 }

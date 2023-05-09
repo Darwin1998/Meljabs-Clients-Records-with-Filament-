@@ -3,18 +3,14 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\BarangayResource\Pages;
-use App\Filament\Resources\BarangayResource\RelationManagers;
 use App\Models\Barangay;
-use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class BarangayResource extends Resource
 {
@@ -22,19 +18,13 @@ class BarangayResource extends Resource
 
     protected static ?string $navigationGroup = 'Location';
 
-
     protected static ?string $navigationIcon = 'heroicon-o-map';
-
-    protected static function getNavigationBadge(): ?string
-    {
-        return self::getModel()::count();
-    }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('name')->required()
+                TextInput::make('name')->required(),
             ]);
     }
 
@@ -42,7 +32,7 @@ class BarangayResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('name')->formatStateUsing(fn (string $state): string => __(ucfirst($state)))
+                TextColumn::make('name')->formatStateUsing(fn (string $state): string => __(ucfirst($state))),
             ])
             ->filters([
                 //
@@ -74,5 +64,10 @@ class BarangayResource extends Resource
     public static function canDelete(Model $record): bool
     {
         return false;
+    }
+
+    protected static function getNavigationBadge(): ?string
+    {
+        return self::getModel()::count();
     }
 }

@@ -7,7 +7,7 @@ use Filament\Pages\Actions;
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Contracts\View\View;
+
 class ListClients extends ListRecords
 {
     protected static string $resource = ClientResource::class;
@@ -19,11 +19,8 @@ class ListClients extends ListRecords
         ];
     }
 
-
-
     protected function paginateTableQuery(Builder $query): Paginator
     {
         return $query->fastPaginate($this->getTableRecordsPerPage());
     }
-
 }

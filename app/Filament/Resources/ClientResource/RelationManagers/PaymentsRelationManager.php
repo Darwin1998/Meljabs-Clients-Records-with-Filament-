@@ -2,7 +2,6 @@
 
 namespace App\Filament\Resources\ClientResource\RelationManagers;
 
-use Filament\Forms;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -12,8 +11,6 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PaymentsRelationManager extends RelationManager
 {
@@ -26,13 +23,13 @@ class PaymentsRelationManager extends RelationManager
         return $form
             ->schema([
                 TextInput::make('received_by')->required(),
-                    TextInput::make('amount')->numeric()->required(),
-                    TextInput::make('payment_mode')->required(),
-                    Select::make('status')->options([
-                        'paid' => 'Paid',
-                        'unpaid' => 'Unpaid'
-                    ])->required(),
-                    DatePicker::make('date')->required(),
+                TextInput::make('amount')->numeric()->required(),
+                TextInput::make('payment_mode')->required(),
+                Select::make('status')->options([
+                    'paid' => 'Paid',
+                    'unpaid' => 'Unpaid',
+                ])->required(),
+                DatePicker::make('date')->required(),
             ]);
     }
 
@@ -44,7 +41,7 @@ class PaymentsRelationManager extends RelationManager
                     ->formatStateUsing(fn (string $state): string => __(ucfirst($state))),
 
                 TextColumn::make('amount')
-                    ->formatStateUsing(fn (string $state): string => __("₱".$state)),
+                    ->formatStateUsing(fn (string $state): string => __('₱' . $state)),
 
                 TextColumn::make('date')
                     ->date('F j, Y'),
@@ -62,7 +59,7 @@ class PaymentsRelationManager extends RelationManager
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make()
+                Tables\Actions\CreateAction::make(),
 
             ])
             ->actions([
@@ -71,10 +68,8 @@ class PaymentsRelationManager extends RelationManager
             ]);
     }
 
-
     protected function getTableContentFooter(): ?View
     {
         return view('filament.clients.footer');
     }
-
 }

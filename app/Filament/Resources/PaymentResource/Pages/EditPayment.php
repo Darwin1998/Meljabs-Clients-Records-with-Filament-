@@ -21,14 +21,16 @@ class EditPayment extends EditRecord
     {
         // $data['image'] = [\Illuminate\Support\Str::uuid() => 'storage/app/public'];
         $data['amount'] = $data['amount'] * 100;
+
         return $data;
     }
+
     protected function mutateFormDataBeforeFill(array $data): array
     {
         // $data['image'] = [\Illuminate\Support\Str::uuid() => 'storage/app/public'];
         $data['amount'] = $data['amount'] / 100;
-        return $data;
 
+        return $data;
 
     }
 }

@@ -6,13 +6,10 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
     public function up()
     {
         Schema::table('clients', function (Blueprint $table) {
             $table->string('contact_number')->after('last_name');
         });
     }
-
-
 };
