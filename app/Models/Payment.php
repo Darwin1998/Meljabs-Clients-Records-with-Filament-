@@ -11,7 +11,7 @@ class Payment extends Model
         'amount',
         'status',
         'received_by',
-        'payment_mode',
+        'payment_method',
     ];
 
     public function client()

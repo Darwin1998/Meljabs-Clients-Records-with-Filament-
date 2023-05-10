@@ -43,12 +43,13 @@ class ClientResource extends Resource
 
                         DatePicker::make('installation_date')->required(),
                         TextInput::make('amount')->required()->numeric(true)->label('Installation Fee'),
-                        Select::make('payment_method')
+
+                        Select::make('status')
                             ->options([
-                                'gcash' => 'G-Cash',
-                                'cash' => 'Cash',
+                                'active' => 'Active',
+                                'inactive' => 'Inactive',
                             ])
-                            ->default('cash')
+                            ->default('active')
                             ->disablePlaceholderSelection(),
 
                     ])->columns(2),
@@ -70,6 +71,8 @@ class ClientResource extends Resource
                 TextColumn::make('last_name')
                     ->formatStateUsing(fn (string $state): string => __(ucfirst($state)))
                     ->sortable(),
+
+                TextColumn::make('status')->formatStateUsing(fn (string $state): string => __("statuses.{$state}")),
 
                 TextColumn::make('barangay.name')
                     ->searchable(),

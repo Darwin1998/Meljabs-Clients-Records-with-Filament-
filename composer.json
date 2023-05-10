@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "doctrine/dbal": "^3.6",
         "filament/filament": "^2.0",
         "filament/tables": "^2.0",
         "flowframe/laravel-trend": "^0.1.1",

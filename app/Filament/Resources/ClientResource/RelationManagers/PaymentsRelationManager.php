@@ -24,7 +24,12 @@ class PaymentsRelationManager extends RelationManager
             ->schema([
                 TextInput::make('received_by')->required(),
                 TextInput::make('amount')->numeric()->required(),
-                TextInput::make('payment_mode')->required(),
+                Select::make('payment_method')
+                    ->options([
+                        'gcash' => 'G-Cash',
+                        'cash' => 'Cash',
+                    ])
+                    ->default('cash'),
                 Select::make('status')->options([
                     'paid' => 'Paid',
                     'unpaid' => 'Unpaid',
@@ -48,6 +53,10 @@ class PaymentsRelationManager extends RelationManager
 
                 TextColumn::make('status')
                     ->formatStateUsing(fn (string $state): string => __(ucfirst($state))),
+
+                TextColumn::make('payment_method')
+                    ->formatStateUsing(fn (string $state): string => __(ucfirst($state))),
+
 
                 TextColumn::make('created_at')
                     ->dateTime('F j, Y  g:i:s A')->label('Created at')->sortable(),
