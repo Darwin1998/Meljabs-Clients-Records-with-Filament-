@@ -57,7 +57,6 @@ class PaymentsRelationManager extends RelationManager
                 TextColumn::make('payment_method')
                     ->formatStateUsing(fn (string $state): string => __(ucfirst($state))),
 
-
                 TextColumn::make('created_at')
                     ->dateTime('F j, Y  g:i:s A')->label('Created at')->sortable(),
 

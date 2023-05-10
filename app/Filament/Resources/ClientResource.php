@@ -72,7 +72,8 @@ class ClientResource extends Resource
                     ->formatStateUsing(fn (string $state): string => __(ucfirst($state)))
                     ->sortable(),
 
-                TextColumn::make('status')->formatStateUsing(fn (string $state): string => __("statuses.{$state}")),
+                TextColumn::make('status')
+                    ->formatStateUsing(fn (string $state): string => __(ucfirst($state))),
 
                 TextColumn::make('barangay.name')
                     ->searchable(),
