@@ -13,7 +13,6 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
-// use Filament\Pages\Actions\Action;
 use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
@@ -35,14 +34,27 @@ class ClientResource extends Resource
             ->schema([
                 Card::make()
                     ->schema([
-                        TextInput::make('first_name')->required(),
-                        TextInput::make('last_name')->required(),
-                        TextInput::make('contact_number')->required(),
-                        Select::make('barangay_id')
-                            ->relationship('barangay', 'name')->required(),
+                        TextInput::make('first_name')
+                            ->required(),
 
-                        DatePicker::make('installation_date')->required(),
-                        TextInput::make('amount')->required()->numeric(true)->label('Installation Fee'),
+                        TextInput::make('last_name')
+                            ->required(),
+
+                        TextInput::make('contact_number')
+                            ->required()
+                            ->regex('((^(\+)(\d){12}$)|(^\d{11}$))'),
+
+                        Select::make('barangay_id')
+                            ->relationship('barangay', 'name')
+                            ->required(),
+
+                        DatePicker::make('installation_date')
+                            ->required(),
+
+                        TextInput::make('amount')
+                            ->required()
+                            ->numeric(true)
+                            ->label('Installation Fee'),
 
                         Select::make('status')
                             ->options([
